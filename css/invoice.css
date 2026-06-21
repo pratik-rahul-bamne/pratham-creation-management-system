@@ -1,0 +1,799 @@
+/* ═══════════════════════════════════════════════════
+   invoice.css – Invoice Card & Print Styles
+   CreativeFlow Invoice Generator
+   Pratham Creation Design & Flex Printing
+═══════════════════════════════════════════════════ */
+
+/* ─────────────────────────────────────
+   1. INVOICE CARD (THE PAPER)
+───────────────────────────────────── */
+.invoice-card {
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  padding: var(--space-10) var(--space-10);
+  box-shadow: var(--shadow-invoice);
+  position: relative;
+  overflow: hidden;
+  animation: fadeIn 0.5s ease;
+}
+
+/* Top gold accent bar */
+.invoice-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--navy-800), var(--gold-500), var(--navy-800));
+}
+
+/* ─────────────────────────────────────
+   2. COMPANY HEADER
+───────────────────────────────────── */
+.company-header {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-5);
+}
+
+.company-logo-wrapper {
+  flex-shrink: 0;
+}
+
+.company-logo-wrapper img {
+  width: 80px;
+  height: 80px;
+  object-fit: contain;
+  border-radius: var(--radius-md);
+}
+
+.logo-fallback {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  border-radius: var(--radius-md);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--gold-500);
+  letter-spacing: -1px;
+  box-shadow: var(--shadow-gold);
+}
+
+.company-details {
+  flex: 1;
+}
+
+.company-name {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--navy-800);
+  letter-spacing: -0.5px;
+  line-height: 1.1;
+  margin: 0;
+}
+
+.company-sub {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--gold-600);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 4px 0 10px;
+}
+
+.company-contact-info {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+
+.company-contact-info span {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 12px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.company-contact-info i {
+  color: var(--gold-500);
+  font-size: 11px;
+}
+
+.contact-sep {
+  color: var(--gray-300);
+}
+
+/* Invoice Stamp */
+.invoice-stamp {
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.stamp-inner {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-600));
+  color: var(--gold-400);
+  font-size: 18px;
+  font-weight: 800;
+  letter-spacing: 4px;
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-md);
+  border: 2px solid var(--gold-600);
+}
+
+/* ─────────────────────────────────────
+   3. META ROW (Customer + Invoice Info)
+───────────────────────────────────── */
+.meta-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-8);
+}
+
+/* Customer Block */
+.customer-block,
+.invoice-info-block {
+  /* inherits block-title from style.css */
+}
+
+/* Invoice Info Table */
+.info-table {
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.info-pair {
+  display: flex;
+  align-items: center;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--gray-200);
+}
+
+.info-pair:last-child {
+  border-bottom: none;
+}
+
+.info-key {
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  color: var(--gray-500);
+  width: 110px;
+  flex-shrink: 0;
+}
+
+.info-val {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--navy-800);
+  font-family: var(--font-primary);
+}
+
+/* ─────────────────────────────────────
+   4. SERVICE TABLE
+───────────────────────────────────── */
+.services-block {
+  /* inherits block-title */
+}
+
+.table-wrapper {
+  overflow-x: auto;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--gray-200);
+}
+
+.svc-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+/* Table Header */
+.svc-table thead tr {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+}
+
+.svc-table thead th {
+  padding: var(--space-3) var(--space-3);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.6px;
+  color: var(--gold-400);
+  text-align: left;
+  white-space: nowrap;
+}
+
+.svc-table thead th:last-child {
+  text-align: center;
+}
+
+/* Column widths */
+.th-sno    { width: 40px; }
+.th-service { min-width: 180px; }
+.th-qty    { width: 70px; }
+.th-rate   { width: 100px; }
+.th-tax    { width: 80px; }
+.th-amount { width: 110px; text-align: right !important; }
+.th-action { width: 48px; }
+
+/* Table Body Rows */
+.svc-table tbody tr {
+  border-bottom: 1px solid var(--gray-100);
+  transition: background var(--transition-fast);
+}
+
+.svc-table tbody tr:last-child {
+  border-bottom: none;
+}
+
+.svc-table tbody tr:hover {
+  background: #FFFDF0;
+}
+
+.svc-table tbody tr:nth-child(even) {
+  background: #FAFBFC;
+}
+
+.svc-table tbody tr:nth-child(even):hover {
+  background: #FFFDF0;
+}
+
+/* Table Cells */
+.svc-table td {
+  padding: var(--space-2) var(--space-3);
+  vertical-align: middle;
+}
+
+/* Serial number */
+.td-sno .row-num {
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--gray-400);
+  text-align: center;
+  display: block;
+}
+
+/* Service select & inputs */
+.svc-select,
+.svc-qty,
+.svc-rate,
+.svc-tax,
+.svc-custom-name {
+  width: 100%;
+  padding: 6px 8px;
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--gray-900);
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.svc-select:focus,
+.svc-qty:focus,
+.svc-rate:focus,
+.svc-tax:focus,
+.svc-custom-name:focus {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 2px rgba(245,158,11,0.1);
+}
+
+.svc-qty,
+.svc-tax {
+  text-align: center;
+}
+
+/* Row amount display */
+.row-amount {
+  display: block;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-800);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Delete row button */
+.btn-del-row {
+  width: 30px;
+  height: 30px;
+  background: var(--danger-bg);
+  border: 1px solid #FECACA;
+  border-radius: var(--radius-sm);
+  color: var(--danger);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  margin: 0 auto;
+}
+
+.btn-del-row:hover {
+  background: var(--danger);
+  color: var(--white);
+  border-color: var(--danger);
+  transform: scale(1.1);
+}
+
+/* Add Service Row Button */
+.add-row-wrapper {
+  margin-top: var(--space-4);
+}
+
+.btn-add-row {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  padding: var(--space-2) var(--space-5);
+  background: transparent;
+  border: 2px dashed var(--gold-500);
+  color: var(--gold-600);
+  font-family: var(--font-primary);
+  font-size: 13px;
+  font-weight: 600;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: background var(--transition-fast), color var(--transition-fast), border-style var(--transition-fast);
+  letter-spacing: 0.3px;
+}
+
+.btn-add-row:hover {
+  background: rgba(245,158,11,0.08);
+  border-style: solid;
+  border-color: var(--gold-500);
+}
+
+.btn-add-row i {
+  font-size: 16px;
+}
+
+/* ─────────────────────────────────────
+   5. BOTTOM SECTION (Summary + Notes)
+───────────────────────────────────── */
+.bottom-section {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  gap: var(--space-8);
+  align-items: start;
+}
+
+/* ─────────────────────────────────────
+   6. SUMMARY BLOCK
+───────────────────────────────────── */
+.summary-block {
+  background: var(--gray-100);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+}
+
+.summary-row-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-3) var(--space-4);
+  border-bottom: 1px solid var(--gray-200);
+  gap: var(--space-2);
+}
+
+.summary-row-item:last-child {
+  border-bottom: none;
+}
+
+.sum-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.strong-label {
+  color: var(--gray-700) !important;
+  font-weight: 700 !important;
+  font-size: 13px !important;
+}
+
+.sum-value {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--navy-800);
+  text-align: right;
+  white-space: nowrap;
+}
+
+/* Discount / Advance Inline Input */
+.inline-input-group {
+  display: flex;
+  align-items: center;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-sm);
+  overflow: hidden;
+  margin-left: auto;
+  max-width: 130px;
+  transition: border-color var(--transition-fast);
+}
+
+.inline-input-group:focus-within {
+  border-color: var(--gold-500);
+  box-shadow: 0 0 0 2px rgba(245,158,11,0.1);
+}
+
+.prefix {
+  padding: 4px 6px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--gray-500);
+  background: var(--gray-100);
+  border-right: 1px solid var(--gray-200);
+  flex-shrink: 0;
+}
+
+.inline-number-input {
+  width: 80px;
+  padding: 4px 8px;
+  font-family: var(--font-primary);
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--navy-800);
+  border: none;
+  outline: none;
+  background: transparent;
+  text-align: right;
+}
+
+/* Grand Total Row */
+.grand-total-row {
+  background: linear-gradient(135deg, var(--navy-800), var(--navy-700));
+}
+
+.grand-total-row .sum-label,
+.grand-total-row .strong-label {
+  color: var(--gold-300, #FCD34D) !important;
+}
+
+.grand-val {
+  font-size: 16px !important;
+  font-weight: 800 !important;
+  color: var(--white) !important;
+}
+
+/* Balance Due Row */
+.balance-due-row {
+  background: linear-gradient(135deg, #DC2626, #EF4444);
+}
+
+.balance-due-row .sum-label,
+.balance-due-row .strong-label {
+  color: rgba(255,255,255,0.85) !important;
+}
+
+.balance-val {
+  font-size: 15px !important;
+  font-weight: 800 !important;
+  color: var(--white) !important;
+}
+
+/* Balance zero / paid */
+.balance-paid-row {
+  background: linear-gradient(135deg, #059669, #10B981) !important;
+}
+
+/* ─────────────────────────────────────
+   7. INVOICE FOOTER
+───────────────────────────────────── */
+.invoice-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1.5px solid var(--gray-200);
+}
+
+.footer-terms {
+  max-width: 300px;
+}
+
+.terms-heading {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--gray-500);
+  margin-bottom: 4px;
+}
+
+.terms-text {
+  font-size: 11px;
+  color: var(--gray-400);
+  line-height: 1.5;
+}
+
+.footer-sig {
+  text-align: center;
+}
+
+.sig-line {
+  width: 160px;
+  height: 1.5px;
+  background: var(--gray-300);
+  margin: 0 auto var(--space-2);
+}
+
+.sig-label {
+  font-size: 11px;
+  color: var(--gray-500);
+  font-weight: 500;
+}
+
+.sig-company {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy-800);
+}
+
+/* ─────────────────────────────────────
+   8. PRINT STYLES  — Compact A4 Single Page
+───────────────────────────────────── */
+@media print {
+
+  /* ── Hide UI chrome ── */
+  .app-header,
+  .action-bar,
+  .toast-popup,
+  .no-print {
+    display: none !important;
+  }
+
+  /* ── Show print-only values (discount/advance text) ── */
+  .print-only {
+    display: inline !important;
+  }
+
+  /* ── A4 page with tight margins to maximise content area ── */
+  @page {
+    size: A4 portrait;
+    margin: 7mm 9mm;
+  }
+
+  html, body {
+    background: white !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+    color-adjust: exact !important;
+    font-size: 11px !important;
+  }
+
+  body::before { display: none !important; }
+
+  .main-content  { padding: 0 !important; }
+  .page-container { max-width: 100% !important; }
+
+  /* ── Invoice card: stripped-down shell ── */
+  .invoice-card {
+    box-shadow: none !important;
+    border-radius: 0 !important;
+    padding: 8px 12px !important;
+    animation: none !important;
+    overflow: visible !important;
+    page-break-inside: avoid;
+  }
+
+  /* Gold bar */
+  .invoice-card::before {
+    height: 4px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ── Company Header ── */
+  .company-header {
+    gap: 8px !important;
+    padding-top: 2px !important;
+    align-items: center !important;
+  }
+
+  .company-logo-wrapper img,
+  .logo-fallback {
+    width: 50px !important;
+    height: 50px !important;
+  }
+
+  .logo-fallback {
+    font-size: 16px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .company-name  { font-size: 18px !important; margin: 0 !important; line-height: 1.1 !important; }
+  .company-sub   { font-size: 9px !important;  margin: 1px 0 4px !important; }
+  .company-contact-info span { font-size: 9px !important; }
+  .contact-sep   { margin: 0 2px !important; }
+
+  .stamp-inner {
+    font-size: 11px !important;
+    letter-spacing: 2.5px !important;
+    padding: 4px 9px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ── Dividers ── */
+  .section-divider { margin: 5px 0 !important; }
+
+  /* ── Meta row (Customer + Invoice Details) ── */
+  .meta-row {
+    grid-template-columns: 1fr 1fr !important;
+    gap: 12px !important;
+  }
+
+  .block-title {
+    font-size: 8px !important;
+    margin-bottom: 4px !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  .block-title i { font-size: 9px !important; }
+
+  .form-field { margin-bottom: 2px !important; }
+
+  .field-label {
+    font-size: 7.5px !important;
+    margin-bottom: 0 !important;
+  }
+
+  .field-input {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    font-size: 10.5px !important;
+    font-weight: 600 !important;
+    pointer-events: none !important;
+    line-height: 1.3 !important;
+  }
+
+  .info-table {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 3px !important;
+  }
+
+  .info-pair { padding: 3px 6px !important; }
+
+  .info-key {
+    font-size: 8px !important;
+    width: 78px !important;
+  }
+
+  .info-val { font-size: 10.5px !important; }
+
+  .status-pill {
+    font-size: 8px !important;
+    padding: 1px 6px !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ── Service table ── */
+  .table-wrapper {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 3px !important;
+    overflow: hidden !important;
+  }
+
+  .svc-table {
+    font-size: 10px !important;
+    min-width: unset !important;
+  }
+
+  .svc-table thead tr {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .svc-table thead th {
+    padding: 4px 5px !important;
+    font-size: 8px !important;
+  }
+
+  .svc-table td { padding: 3px 5px !important; }
+
+  .svc-select,
+  .svc-qty,
+  .svc-rate,
+  .svc-tax,
+  .svc-custom-name {
+    border: none !important;
+    background: transparent !important;
+    padding: 0 !important;
+    appearance: none !important;
+    -webkit-appearance: none !important;
+    pointer-events: none !important;
+    font-size: 10px !important;
+    font-weight: 600 !important;
+    color: #1e293b !important;
+    width: auto !important;
+  }
+
+  .row-amount { font-size: 10px !important; }
+  .row-num    { font-size: 8.5px !important; }
+
+  /* ── Bottom section ── */
+  .bottom-section {
+    grid-template-columns: 1fr 258px !important;
+    gap: 12px !important;
+    align-items: start !important;
+  }
+
+  /* ── Notes ── */
+  .notes-area {
+    border: 1px solid #e2e8f0 !important;
+    background: transparent !important;
+    resize: none !important;
+    pointer-events: none !important;
+    font-size: 10px !important;
+    padding: 5px 6px !important;
+    min-height: 62px !important;
+    max-height: 90px !important;
+    line-height: 1.5 !important;
+    overflow: hidden !important;
+    color: #475569 !important;
+  }
+
+  /* ── Summary ── */
+  .summary-block {
+    border: 1px solid #e2e8f0 !important;
+    border-radius: 3px !important;
+  }
+
+  .summary-row-item { padding: 3px 7px !important; gap: 4px !important; }
+
+  .sum-label        { font-size: 9px !important; }
+  .strong-label     { font-size: 9.5px !important; }
+  .sum-value        { font-size: 9.5px !important; }
+  .grand-val        { font-size: 13px !important; font-weight: 800 !important; }
+  .balance-val      { font-size: 11.5px !important; font-weight: 800 !important; }
+
+  /* Hide editable inputs — show text values instead */
+  .inline-input-group { display: none !important; }
+
+  .grand-total-row,
+  .balance-due-row,
+  .balance-paid-row {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* ── Footer ── */
+  .invoice-footer {
+    margin-top: 8px !important;
+    padding-top: 7px !important;
+  }
+
+  .footer-terms { max-width: 210px !important; }
+
+  .terms-heading { font-size: 7.5px !important; margin-bottom: 2px !important; }
+  .terms-text    { font-size: 7.5px !important; line-height: 1.4 !important; }
+
+  .sig-line    { width: 110px !important; margin-bottom: 3px !important; }
+  .sig-label   { font-size: 8.5px !important; }
+  .sig-company { font-size: 8.5px !important; }
+}

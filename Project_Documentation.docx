@@ -1,0 +1,585 @@
+# CreativeFlow – Invoice Generation System
+
+## Software Requirements Specification (SRS) & System Architecture Document
+
+### Version 1.0
+
+---
+
+# 1. Project Information
+
+## Project Name
+
+**CreativeFlow – Invoice Generation System**
+
+## Business Domain
+
+Graphics Design, Flex Printing, Photography, Videography, Branding & Creative Services
+
+## Project Type
+
+Single Page Web Application
+
+## Objective
+
+To provide a simple, professional, and fast invoice generation system that allows business owners to create, print, and download invoices within one minute.
+
+---
+
+# 2. Problem Statement
+
+Most graphics and printing businesses create invoices manually using:
+
+* Excel Sheets
+* MS Word
+* WhatsApp Messages
+* Paper Bills
+
+Problems faced:
+
+* Time-consuming billing process
+* Calculation errors
+* Unorganized customer records
+* Unprofessional invoice format
+* No invoice tracking
+
+CreativeFlow solves these problems through an automated invoice generation system.
+
+---
+
+# 3. Project Scope
+
+### Included in Version 1
+
+✅ Customer Details
+
+✅ Dynamic Service Entry
+
+✅ Auto Invoice Number
+
+✅ Auto Date Generation
+
+✅ Real-Time Calculations
+
+✅ Discount Management
+
+✅ Advance Payment Tracking
+
+✅ Balance Due Calculation
+
+✅ Print Invoice
+
+✅ Download PDF
+
+✅ Responsive Design
+
+---
+
+### Not Included in Version 1
+
+❌ Customer Database
+
+❌ Login System
+
+❌ Invoice History
+
+❌ Reports Dashboard
+
+❌ WhatsApp Integration
+
+❌ Email Integration
+
+❌ Expense Tracking
+
+❌ Order Management
+
+---
+
+# 4. User Roles
+
+## Business Owner
+
+The only user of the system.
+
+Responsibilities:
+
+* Create invoices
+* Print invoices
+* Download invoices
+* Calculate customer payments
+
+---
+
+# 5. Business Workflow
+
+```text
+Customer Arrives
+       │
+       ▼
+Enter Customer Details
+       │
+       ▼
+Add Services
+       │
+       ▼
+Auto Calculate Amount
+       │
+       ▼
+Apply Discount
+       │
+       ▼
+Add Advance Payment
+       │
+       ▼
+Generate Invoice
+       │
+       ▼
+Print / Save PDF
+```
+
+---
+
+# 6. Functional Requirements
+
+## FR-01 Customer Information
+
+The system shall allow the user to enter:
+
+| Field         | Required |
+| ------------- | -------- |
+| Customer Name | Yes      |
+| Mobile Number | Yes      |
+| Address       | No       |
+| Business Name | No       |
+
+---
+
+## FR-02 Invoice Information
+
+The system shall automatically generate:
+
+### Invoice Number
+
+Format:
+
+```text
+INV-YYYYMMDD-001
+```
+
+Example:
+
+```text
+INV-20260621-001
+```
+
+### Invoice Date
+
+Auto-filled with current date.
+
+---
+
+## FR-03 Service Entry
+
+The system shall allow multiple service entries.
+
+### Fields
+
+| Field        |
+| ------------ |
+| Service Name |
+| Quantity     |
+| Rate         |
+| Tax (%)      |
+| Amount       |
+
+---
+
+### Supported Services
+
+```text
+Logo Design
+Banner Design
+Poster Design
+Flex Printing
+Visiting Card Design
+Wedding Photography
+Videography
+Video Editing
+Album Design
+Social Media Post Design
+Other
+```
+
+---
+
+## FR-04 Calculations
+
+### Item Amount
+
+```javascript
+Amount = Quantity × Rate
+```
+
+### Tax Amount
+
+```javascript
+Tax Amount = Amount × Tax / 100
+```
+
+### Subtotal
+
+```javascript
+Subtotal = Sum(All Item Amounts)
+```
+
+### Grand Total
+
+```javascript
+Grand Total =
+Subtotal +
+Tax Total -
+Discount
+```
+
+### Balance Due
+
+```javascript
+Balance Due =
+Grand Total -
+Advance Paid
+```
+
+---
+
+## FR-05 Summary Section
+
+The system shall display:
+
+```text
+Subtotal
+
+Tax Total
+
+Discount
+
+Grand Total
+
+Advance Paid
+
+Balance Due
+```
+
+---
+
+## FR-06 Notes Section
+
+Optional notes can be added.
+
+Example:
+
+```text
+Thank you for choosing Pratham Creation.
+
+Delivery within 3 days.
+```
+
+---
+
+## FR-07 Invoice Actions
+
+The system shall provide:
+
+### Add Service
+
+Add a new service row.
+
+### Clear Form
+
+Reset invoice data.
+
+### Print Invoice
+
+Print the invoice.
+
+### Generate PDF
+
+Download invoice as PDF.
+
+---
+
+# 7. Non-Functional Requirements
+
+## Performance
+
+* Invoice generation < 1 second
+* Real-time calculations
+
+## Usability
+
+* Easy to use
+* Minimal clicks
+* Beginner-friendly interface
+
+## Compatibility
+
+* Chrome
+* Edge
+* Firefox
+* Brave
+
+## Responsive Design
+
+* Desktop
+* Laptop
+* Tablet
+* Mobile
+
+---
+
+# 8. System Architecture
+
+## Architecture Overview
+
+Version 1 follows a client-side architecture.
+
+```text
+┌─────────────────────────────┐
+│       User Interface        │
+│      HTML + CSS Layer       │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│     Business Logic Layer    │
+│        JavaScript           │
+└─────────────┬───────────────┘
+              │
+              ▼
+┌─────────────────────────────┐
+│         Data Layer          │
+│ Local Storage / JSON Object │
+└─────────────────────────────┘
+```
+
+---
+
+# 9. Layer Description
+
+## Presentation Layer
+
+### Technology
+
+* HTML5
+* CSS3
+* Bootstrap 5
+
+### Responsibilities
+
+* Display invoice form
+* Display totals
+* Display service table
+* Display buttons
+
+---
+
+## Business Logic Layer
+
+### Technology
+
+* JavaScript ES6
+
+### Responsibilities
+
+* Generate invoice number
+* Generate date
+* Calculate amounts
+* Calculate taxes
+* Calculate discounts
+* Generate PDF
+* Print invoice
+
+---
+
+## Data Layer
+
+### Technology
+
+* Browser Local Storage
+
+### Responsibilities
+
+* Store invoice temporarily
+* Save generated invoice data
+* Restore invoice if page reloads
+
+---
+
+# 10. Component Architecture
+
+```text
+Invoice Page
+│
+├── Header Component
+│
+├── Customer Details Component
+│
+├── Invoice Information Component
+│
+├── Service Table Component
+│
+├── Summary Component
+│
+├── Notes Component
+│
+└── Action Buttons Component
+```
+
+---
+
+# 11. Invoice Page Layout
+
+```text
+┌───────────────────────────────────────┐
+│ Company Logo                          │
+│ Company Name                          │
+│ Contact Information                   │
+├───────────────────────────────────────┤
+│ Customer Details                      │
+│ Name                                  │
+│ Mobile                                │
+│ Address                               │
+├───────────────────────────────────────┤
+│ Invoice Number      Date              │
+├───────────────────────────────────────┤
+│ Service Table                         │
+│                                       │
+│ Service | Qty | Rate | Tax | Amount   │
+│                                       │
+│ + Add Service                         │
+├───────────────────────────────────────┤
+│ Subtotal                              │
+│ Discount                              │
+│ Grand Total                           │
+│ Advance Paid                          │
+│ Balance Due                           │
+├───────────────────────────────────────┤
+│ Notes                                 │
+├───────────────────────────────────────┤
+│ Generate PDF                          │
+│ Print Invoice                         │
+│ Clear Form                            │
+└───────────────────────────────────────┘
+```
+
+---
+
+# 12. Folder Structure
+
+```text
+graphics-invoice-generator/
+│
+├── index.html
+│
+├── css/
+│   ├── style.css
+│   ├── invoice.css
+│   └── responsive.css
+│
+├── js/
+│   ├── app.js
+│   ├── invoice.js
+│   ├── calculations.js
+│   ├── pdf.js
+│   └── storage.js
+│
+├── assets/
+│   ├── images/
+│   ├── icons/
+│   └── logo/
+│
+└── libraries/
+    └── html2pdf.min.js
+```
+
+---
+
+# 13. Invoice Data Model
+
+```json
+{
+  "invoiceNumber": "INV-20260621-001",
+  "date": "21/06/2026",
+  "customer": {
+    "name": "Rahul Patil",
+    "mobile": "9876543210",
+    "address": "Vita"
+  },
+  "services": [
+    {
+      "service": "Logo Design",
+      "qty": 1,
+      "rate": 1000,
+      "tax": 0,
+      "amount": 1000
+    }
+  ],
+  "subtotal": 1000,
+  "discount": 0,
+  "grandTotal": 1000,
+  "advancePaid": 500,
+  "balanceDue": 500
+}
+```
+
+---
+
+# 14. Future Upgrade Architecture (Version 2)
+
+```text
+Frontend (HTML/CSS/JS)
+          │
+          ▼
+Flask REST API
+          │
+          ▼
+PostgreSQL Database
+          │
+          ▼
+Invoice Storage
+Customer Records
+Payment Records
+```
+
+### Additional Features
+
+* Customer Management
+* Invoice History
+* Payment Tracking
+* WhatsApp Sharing
+* Email Integration
+* Reports Dashboard
+
+---
+
+# 15. Expected Outcome
+
+The Invoice Generation System should allow the business owner to:
+
+* Create professional invoices in less than one minute.
+* Automatically calculate totals and balances.
+* Print invoices instantly.
+* Download invoices as PDF.
+* Operate without requiring a backend in Version 1.
+* Serve as the foundation for a complete Graphics Business Management System in future versions.
+
+---
+
+## GitHub Repository
+
+```text
+graphics-invoice-generator
+```
+
+## Project Tagline
+
+**"Fast, Professional & Simple Invoice Generation for Creative Businesses."**
